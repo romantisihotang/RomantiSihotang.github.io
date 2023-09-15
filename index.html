@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Halaman Web Pribadi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+      body {
+        font-family: "Helvetica", Arial, sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 0;
+      }
+
+      header {
+        background-color: #333;
+        color: #fff;
+        padding: 40px 0;
+        text-align: center;
+      }
+
+      h1 {
+        margin: 0;
+        padding: 0;
+        font-size: 36px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      p {
+        font-size: 18px;
+      }
+
+      nav {
+        background-color: #444;
+        color: #fff;
+        text-align: center;
+        padding: 10px;
+      }
+
+      nav a {
+        text-decoration: none;
+        color: #fff;
+        margin: 10px;
+        transition: color 0.3s ease;
+      }
+
+      nav a:hover {
+        color: #ff6f61;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+      }
+
+      .profile-img {
+        display: block;
+        margin: 0 auto;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease;
+      }
+
+      .profile-img:hover {
+        transform: scale(1.1);
+      }
+
+      .section {
+        margin-top: 20px;
+      }
+
+      .photo-gallery {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      .photo-item {
+        flex: 0 0 calc(33.33% - 10px);
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        overflow: hidden;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease;
+        cursor: pointer;
+      }
+
+      .photo-item:hover {
+        transform: translateY(-5px);
+      }
+
+      .photo-item img {
+        width: 100%;
+        height: auto;
+      }
+
+      /* Modal Style */
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 1;
+        overflow: auto;
+      }
+
+      .modal-content {
+        margin: 10% auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        position: relative;
+      }
+
+      .modal-img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      .modal-close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+        font-size: 24px;
+        color: #777;
+      }
+
+      .modal-close:hover {
+        color: #ff6f61;
+      }
+
+      .contact-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .contact-list li {
+        margin-bottom: 10px;
+      }
+
+      .contact-list a {
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+        transition: color 0.3s ease;
+        font-size: 18px;
+      }
+
+      .contact-list a:hover {
+        color: #ff6f61;
+      }
+
+      .contact-list .icon {
+        margin-right: 10px;
+        font-size: 18px;
+      }
+
+      footer {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 20px 0;
+      }
+
+      /* CSS untuk tombol "X" pada modal */
+      .modal-close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+        font-size: 24px;
+        color: #777;
+        transition: color 0.3s ease; /* Efek transisi warna saat hover */
+      }
+
+      .modal-close:hover {
+        color: #ff6f61; /* Warna saat tombol "X" dihover */
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <img class="profile-img" src="assets/foto.jpg" alt="Foto Profil Anda" />
+      <h1>Romanti Sihotang</h1>
+      <p>Selamat datang di halaman web pribadi saya</p>
+    </header>
+    <nav>
+      <a href="#">Beranda</a>
+      <a href="#">Tentang Saya</a>
+      <a href="#photos">Foto</a>
+      <a href="#contact">Kontak</a>
+    </nav>
+    <div class="container">
+      <h2>Profil Saya</h2>
+      <p>
+        Saya adalah Romanti Sihotang, seorang [profesi Anda] yang berfokus pada [bidang spesialisasi Anda]. Saya memiliki pengalaman dalam [sebutkan beberapa pengalaman Anda yang relevan] dan saya sangat bersemangat dalam [minat atau hobi
+        Anda].
+      </p>
+
+      <div class="section" id="photos">
+        <h2>Album Foto</h2>
+        <div class="photo-gallery">
+          <div class="photo-item" onclick="openModal('assets/foto.jpg', 'Foto 1')">
+            <img src="assets/foto.jpg" alt="Foto 1" />
+          </div>
+          <div class="photo-item" onclick="openModal('assets/foto.jpg', 'Foto 2')">
+            <img src="assets/foto.jpg" alt="Foto 2" />
+          </div>
+          <div class="photo-item" onclick="openModal('assets/foto.jpg', 'Foto 3')">
+            <img src="assets/foto.jpg" alt="Foto 3" />
+          </div>
+          <div class="photo-item" onclick="openModal('assets/foto.jpg', 'Foto 4')">
+            <img src="assets/foto.jpg" alt="Foto 4" />
+          </div>
+          <div class="photo-item" onclick="openModal('assets/foto.jpg', 'Foto 5')">
+            <img src="assets/foto.jpg" alt="Foto 5" />
+          </div>
+          <div class="photo-item" onclick="openModal('assets/foto.jpg', 'Foto 6')">
+            <img src="assets/foto.jpg" alt="Foto 6" />
+          </div>
+        </div>
+      </div>
+
+      <div class="section" id="contact">
+        <h3>Hubungi saya!</h3>
+        <ul class="contact-list">
+          <li>
+            <i class="fas fa-envelope icon"></i>
+            <a href="mailto:youremail@example.com">Email</a>
+          </li>
+          <li>
+            <i class="fab fa-facebook-f icon"></i>
+            <a href="https://www.facebook.com/yourfacebookprofile">Facebook</a>
+          </li>
+          <li>
+            <i class="fab fa-instagram icon"></i>
+            <a href="https://www.instagram.com/yourinstagramprofile">Instagram</a>
+          </li>
+          <li>
+            <i class="fab fa-tiktok icon"></i>
+            <a href="https://www.tiktok.com/yourtiktokprofile">TikTok</a>
+          </li>
+        </ul>
+      </div>
+      
+
+    <!-- Modal -->
+    <div class="modal" id="myModal">
+      <div class="modal-content">
+        <!-- Tambahkan tombol "X" di sini -->
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <img id="modalImg" class="modal-img" src="" alt="Foto Modal" />
+        <p id="modalCaption"></p>
+      </div>
+    </div>
+
+    <footer>&copy; 2023 RomantiSihotang. Hak cipta dilindungi.</footer>
+
+    <script>
+      // Fungsi untuk membuka modal
+      function openModal(imgSrc, caption) {
+        const modal = document.getElementById("myModal");
+        const modalImg = document.getElementById("modalImg");
+        const modalCaption = document.getElementById("modalCaption");
+
+        modal.style.display = "block";
+        modalImg.src = imgSrc;
+        modalCaption.textContent = caption;
+      }
+
+      // Fungsi untuk menutup modal
+      function closeModal() {
+        const modal = document.getElementById("myModal");
+        modal.style.display = "none";
+      }
+
+      // Tutup modal jika pengguna mengklik di luar modal
+      window.onclick = function (event) {
+        const modal = document.getElementById("myModal");
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      };
+    </script>
+  </body>
+</html>
